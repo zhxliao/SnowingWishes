@@ -1,0 +1,15 @@
+body{
+background-color:black;
+font-family:arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+color:orange;
+}
+
+#make_wish{
+position:absolute;
+left:565px;
+top:360px;
+}
+
+textarea{
+cols:30;
+}

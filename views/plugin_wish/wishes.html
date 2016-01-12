@@ -1,0 +1,72 @@
+<!--[if HTML5]><![endif]-->
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+<head>
+<title>{{=response.title or request.application}}·许愿墙</title>
+  <!--[if !HTML5]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+  <![endif]-->
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!-- Always force latest IE rendering engine
+       (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+	   
+  <meta charset="utf-8" />
+
+  <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+  <meta name="application-name" content="{{=request.application}}" />
+
+  <!-- Speaking of Google, don't forget to set your site up:
+       http://google.com/webmasters -->
+  <meta name="google-site-verification" content="" />
+
+  <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+        device-width: Occupy full width of the screen in its current orientation
+        initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+        user-scalable = yes allows the user to zoom in -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+
+  <!-- All JavaScript at the bottom, except for Modernizr which enables
+       HTML5 elements & feature detects -->
+  <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
+  {{include 'web2py_ajax.html'}}
+
+    
+    
+    
+    <!-- Here begin my own codes-->
+<script type="text/javascript" src={{=URL('static','plugin_wish/js/jquery.js')}}></script>
+<script type="text/javascript" src={{=URL('static','plugin_wish/js/dialog.js')}}></script>
+<link href={{=URL('static','plugin_wish/css/dialog.css')}} rel="stylesheet" type="text/css">
+    
+<link href={{=URL('static','plugin_wish/css/wishes.css')}} rel="stylesheet" type="text/css">
+</head>
+<body background={{=URL('static','plugin_wish/pic/'+str(pic_num)+'.jpg')}}>
+    <div id="dialog-overlay"></div>
+    <div id="dialog-box">
+        <div class="dialog-content">
+            <div id="dialog-message"></div>
+            <a href="#" class="button">Close</a>
+        </div>
+    </div>
+    <div id='make_wish'>
+        {{=LOAD('plugin_wish','make_wish.load',ajax=True)}}
+    </div>
+<audio id="clickSound" autoplay="autoplay" loop="loop">
+<source src={{=URL('static','plugin_wish/sound/in_love.mp3')}}>
+</audio>
+</body>
+<script type="text/javascript" src={{=URL('static','plugin_wish/js/wishes.js')}}></script>
+<script type="text/javascript">
+snowing('{{=allwishes}}').call(window);
+</script>
+</html>
